@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+potvenv/
+.env
+*.sqlite3
+/staticfiles/
+/media/
+.idea/
+.vscode/
+*.log
+.DS_Store
+Thumbs.db
