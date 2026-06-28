@@ -1,5 +1,4 @@
-<!-- hero section -->
- {% extends "portfolio/base.html" %}
+{% extends "portfolio/base.html" %}
 {% load static %}
 
 {% block title %}{{ owner.name }} | Python ML Developer{% endblock %}
@@ -13,62 +12,76 @@
 {% endblock %}
 
 {% block content %}
-<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden px-6 py-24">
     
     <div class="orb w-[600px] h-[600px] bg-cyan-500/10 top-[-10%] left-[-15%]"></div>
     <div class="orb w-[500px] h-[500px] bg-violet-500/10 bottom-[-5%] right-[-10%]"></div>
     
-    <div class="relative z-10 max-w-5xl mx-auto text-center">
+    <div class="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 mt-12">
         
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 reveal">
-            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-            <span class="font-mono text-xs text-slate-400">Available for opportunities</span>
+        <div class="hidden lg:block w-36 xl:w-40"></div>
+
+        <div class="flex-1 text-center flex flex-col items-center">
+            
+            <div class="mb-8 flex justify-center reveal">
+                <div class="w-40 h-40 md:w-52 md:h-52 rounded-full p-1.5 glass border border-cyan-400/40 shadow-[0_0_40px_rgba(34,211,238,0.25)] transition-transform duration-500 hover:scale-105">
+                    <img src="{% static 'portfolio/images/me.JPEG' %}" alt="Arslan Ahmad" class="w-full h-full object-cover rounded-full">
+                </div>
+            </div>
+            
+            <h1 class="font-display font-extrabold text-5xl md:text-6xl lg:text-4xl leading-none mb-6 reveal">
+                <span class="block text-white">Muhammad</span>
+                <span class="block shimmer-text">Arslan Ahmad</span>
+            </h1>
+            
+            <div class="font-mono text-lg md:text-xl text-slate-400 mb-3 reveal">
+                <span id="typed-text"></span><span class="typed-cursor">|</span>
+            </div>
+            
+            <p class="text-slate-500 text-sm font-mono mb-10 reveal">
+                <i class="fas fa-map-marker-alt text-cyan-400 mr-1.5"></i>
+                Faisalabad, Pakistan &nbsp;&middot;&nbsp; NUML Software Engineering (6th Sem)
+            </p>
+            
+            <div class="flex flex-wrap items-center justify-center gap-4 reveal">
+                <a href="#projects" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-display font-semibold text-sm bg-gradient-to-r from-cyan-400 to-violet-400 text-black hover:from-cyan-300 hover:to-violet-300 transition-all duration-300 shadow-[0_0_30px_rgba(34,211,238,0.3)]">
+                    <i class="fas fa-rocket text-xs"></i> View Projects
+                </a>
+                <a href="#contact" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-display font-semibold text-sm glass border border-white/10 text-white hover:border-cyan-400/40 transition-all neon-border">
+                    <i class="fas fa-envelope text-xs"></i> Get In Touch
+                </a>
+                <a href="{{ owner.github }}" target="_blank" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-display font-semibold text-sm glass hover:border-violet-400/40 text-slate-300 transition-all">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+
+            <div class="mt-20 grid grid-cols-2 gap-4 lg:hidden reveal w-full max-w-md">
+                {% for stat in hero_stats %}
+                <div class="glass rounded-2xl p-4 text-center glass-hover">
+                    <div class="font-display font-bold text-2xl gradient-text">{{ stat.value }}</div>
+                    <div class="font-mono text-xs text-slate-500 mt-1">{{ stat.label }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="mt-16 flex flex-col items-center gap-2 text-slate-600 animate-float lg:mt-24 reveal">
+                <span class="font-mono text-xs">scroll</span>
+                <div class="w-px h-8 bg-gradient-to-b from-cyan-400/60 to-transparent"></div>
+            </div>
+
         </div>
-        
-        <h1 class="font-display font-extrabold text-5xl md:text-7xl lg:text-8xl leading-none mb-6 reveal">
-            <span class="block text-white">Muhammad</span>
-            <span class="block shimmer-text">Arslan Ahmad</span>
-        </h1>
-        
-        <div class="font-mono text-lg md:text-xl text-slate-400 mb-3 reveal">
-            <span id="typed-text"></span><span class="typed-cursor">|</span>
-        </div>
-        
-        <p class="text-slate-500 text-sm font-mono mb-10 reveal">
-            <i class="fas fa-map-marker-alt text-cyan-400 mr-1.5"></i>
-            Faisalabad, Pakistan &nbsp;&middot;&nbsp; NUML Software Engineering (6th Sem)
-        </p>
-        
-        <div class="flex flex-wrap items-center justify-center gap-4 reveal">
-            <a href="#projects" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-display font-semibold text-sm bg-gradient-to-r from-cyan-400 to-violet-400 text-black hover:from-cyan-300 hover:to-violet-300 transition-all duration-300 shadow-[0_0_30px_rgba(34,211,238,0.3)]">
-                <i class="fas fa-rocket text-xs"></i> View Projects
-            </a>
-            <a href="#contact" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-display font-semibold text-sm glass border border-white/10 text-white hover:border-cyan-400/40 transition-all neon-border">
-                <i class="fas fa-envelope text-xs"></i> Get In Touch
-            </a>
-            <a href="{{ owner.github }}" target="_blank" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-display font-semibold text-sm glass hover:border-violet-400/40 text-slate-300 transition-all">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-        </div>
-        
-        <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+
+        <div class="hidden lg:flex flex-col gap-4 w-36 xl:w-40 shrink-0 reveal">
             {% for stat in hero_stats %}
-            <div class="glass rounded-2xl p-4 text-center glass-hover">
-                <div class="font-display font-bold text-2xl gradient-text">{{ stat.value }}</div>
-                <div class="font-mono text-xs text-slate-500 mt-1">{{ stat.label }}</div>
+            <div class="glass rounded-2xl p-4 text-center glass-hover w-full">
+                <div class="font-display font-bold text-xl xl:text-2xl gradient-text">{{ stat.value }}</div>
+                <div class="font-mono text-[10px] xl:text-xs text-slate-500 mt-1">{{ stat.label }}</div>
             </div>
             {% endfor %}
         </div>
-        
-        <div class="mt-16 flex flex-col items-center gap-2 text-slate-600 animate-float">
-            <span class="font-mono text-xs">scroll</span>
-            <div class="w-px h-8 bg-gradient-to-b from-cyan-400/60 to-transparent"></div>
-        </div>
-        
+
     </div>
 </section>
-
-
 
 <!-- 2 about and skill section -->
 
