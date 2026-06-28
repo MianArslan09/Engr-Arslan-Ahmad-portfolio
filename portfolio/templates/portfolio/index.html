@@ -429,3 +429,240 @@
     </div>
 </div></section>
 {% endblock %}
+
+
+
+
+
+<!-- 7 all javascript logic  -->
+
+{% block extra_scripts %}
+<script>
+(function initThree() {
+    const canvas = document.getElementById("bg-canvas");
+    if(!canvas || typeof THREE === "undefined") return;
+
+    const renderer = new THREE.WebGLRenderer({canvas, alpha: true, antialias: true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    const mouse = {x: 0, y: 0};
+    document.addEventListener("mousemove", e => {
+        mouse.x = (e.clientX/window.innerWidth - 0.5) * 2;
+        mouse.y = -(e.clientY/window.innerHeight - 0.5) * 2;
+    });
+
+    const N = 1800;
+    const pos = new Float32Array(N * 3);
+    const col = new Float32Array(N * 3);
+    const vel = [];
+    const C = new THREE.Color();
+
+    for(let i = 0; i < N; i++) {
+        const th = Math.random() * Math.PI * 2;
+        const ph = Math.acos(2 * Math.random() - 1);
+        const r = 2.5 + (Math.random() - 0.5) * 4;
+        pos[i*3] = r * Math.sin(ph) * Math.cos(th);
+        pos[i*3+1] = r * Math.sin(ph) * Math.sin(th);
+        pos[i*3+2] = r * Math.cos(ph);
+
+        vel.push({x: (Math.random()-0.5)*0.002, y: (Math.random()-0.5)*0.002, z: (Math.random()-0.5)*0.001});
+        
+        const t = Math.random();
+        C.set(t < 0.05 ? "#22D3EE" : t < 0.10 ? "#A78BFA" : "#1e293b");
+        col[i*3] = C.r; col[i*3+1] = C.g; col[i*3+2] = C.b;
+    }
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
+
+    const mat = new THREE.PointsMaterial({size: 0.025, vertexColors: true, transparent: true, opacity: 0.85});
+    const pts = new THREE.Points(geo, mat);
+    scene.add(pts);
+
+    const lGeo = new THREE.BufferGeometry();
+    const lPos = new Float32Array(N * 6);
+    lGeo.setAttribute("position", new THREE.BufferAttribute(lPos, 3));
+    const lMat = new THREE.LineBasicMaterial({color: 0x22D3EE, transparent: true, opacity: 0.04});
+    const lines = new THREE.LineSegments(lGeo, lMat);
+    scene.add(lines);
+
+    let fr = 0;
+    function anim() {
+        requestAnimationFrame(anim);
+        fr++;
+        const pa = geo.attributes.position.array;
+        
+        for(let i = 0; i < N; i++) {
+            pa[i*3] += vel[i].x;
+            pa[i*3+1] += vel[i].y;
+            pa[i*3+2] += vel[i].z;
+            
+            if(Math.abs(pa[i*3]) > 6) vel[i].x *= -1;
+            if(Math.abs(pa[i*3+1]) > 6) vel[i].y *= -1;
+            if(Math.abs(pa[i*3+2]) > 6) vel[i].z *= -1;
+        }
+        geo.attributes.position.needsUpdate = true;
+
+        pts.rotation.x += (mouse.y * 0.15 - pts.rotation.x) * 0.03;
+        pts.rotation.y += (mouse.x * 0.15 - pts.rotation.y) * 0.03;
+        lines.rotation.x = pts.rotation.x;
+        lines.rotation.y = pts.rotation.y;
+
+        if(fr % 3 === 0) {
+            let li = 0;
+            const lp = lGeo.attributes.position.array;
+            const THR = 1.44;
+            const MAX = 300;
+
+            for(let a = 0; a < N && li < MAX; a++) {
+                const ax = pa[a*3];
+                const ay = pa[a*3+1];
+                const az = pa[a*3+2];
+                for(let b = a + 1; b < N && li < MAX; b++) {
+                    const dx = ax - pa[b*3];
+                    const dy = ay - pa[b*3+1];
+                    const dz = az - pa[b*3+2];
+                    if (dx*dx + dy*dy + dz*dz < THR) {
+                        lp[li*6] = ax; lp[li*6+1] = ay; lp[li*6+2] = az;
+                        lp[li*6+3] = pa[b*3]; lp[li*6+4] = pa[b*3+1]; lp[li*6+5] = pa[b*3+2];
+                        li++;
+                    }
+                }
+            }
+            lGeo.setDrawRange(0, li * 2);
+            lGeo.attributes.position.needsUpdate = true;
+        }
+        renderer.render(scene, camera);
+    }
+    anim();
+
+    window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+})();
+</script>
+
+<script>
+    if(document.querySelector(".projects-swiper")) {
+        new Swiper(".projects-swiper", {
+            slidesPerView: 1, spaceBetween: 24, grabCursor: true, loop: true,
+            autoplay: { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true },
+            pagination: { el: ".projects-swiper .swiper-pagination", clickable: true },
+            navigation: { nextEl: ".projects-swiper .swiper-button-next", prevEl: ".projects-swiper .swiper-button-prev" },
+            breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1200: { slidesPerView: 3 } }
+        });
+    }
+    if(document.querySelector(".certs-swiper")) {
+        new Swiper(".certs-swiper", {
+            slidesPerView: 1, spaceBetween: 20, grabCursor: true, loop: true,
+            autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
+            pagination: { el: ".certs-swiper .swiper-pagination", clickable: true },
+            breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+        });
+    }
+</script>
+
+<script>
+    (function(){
+        const el = document.getElementById("typed-text");
+        if(!el) return;
+        const roles = ["Python ML Developer", "Data Science Enthusiast", "FastAPI & Django Engineer", "NLP & Computer Vision Builder"];
+        let ri = 0, ci = 0, del = false;
+        
+        function tick() {
+            const cur = roles[ri];
+            el.textContent = del ? cur.substring(0, ci-1) : cur.substring(0, ci+1);
+            del ? ci-- : ci++;
+            
+            if(!del && ci === cur.length) {
+                setTimeout(() => { del = true; tick(); }, 2200);
+                return;
+            }
+            if(del && ci === 0) {
+                del = false;
+                ri = (ri + 1) % roles.length;
+            }
+            setTimeout(tick, del ? 45 : 90);
+        }
+        tick();
+    })();
+</script>
+
+<script>
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".filter-btn").forEach(b => {
+                b.classList.remove("border-cyan-400/40", "text-cyan-400");
+                b.classList.add("border-white/10", "text-slate-400");
+            });
+            btn.classList.add("border-cyan-400/40", "text-cyan-400");
+            btn.classList.remove("border-white/10", "text-slate-400");
+            
+            const f = btn.dataset.filter;
+            document.querySelectorAll("#projects-grid [data-category]").forEach(c => {
+                c.style.display = (f === "all" || c.dataset.category === f) ? "" : "none";
+            });
+        });
+    });
+</script>
+
+<script>
+    (function(){
+        const form = document.getElementById("contact-form");
+        const succ = document.getElementById("form-success");
+        const errBox = document.getElementById("form-error");
+        const errMsg = document.getElementById("form-error-msg");
+        const btn = document.getElementById("submit-btn");
+        const lbl = document.getElementById("submit-label");
+        const ta = form?.querySelector("textarea");
+        const cnt = document.getElementById("char-count");
+        
+        if(!form) return;
+        
+        ta?.addEventListener("input", () => {
+            cnt.textContent = ta.value.length + "/3000";
+            cnt.style.color = ta.value.length > 2800 ? "#f87171" : "";
+        });
+        
+        form.addEventListener("submit", async e => {
+            e.preventDefault();
+            btn.disabled = true;
+            lbl.textContent = "Sending...";
+            errBox.classList.add("hidden");
+            
+            try {
+                const res = await fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: { "X-Requested-With": "XMLHttpRequest" }
+                });
+                const data = await res.json();
+                
+                if(data.success) {
+                    form.classList.add("hidden");
+                    succ.classList.remove("hidden");
+                } else {
+                    errBox.classList.remove("hidden");
+                    const msgs = Object.values(data.errors || {}).flat().map(e => e.message).join(" ");
+                    errMsg.textContent = msgs || "Please check your inputs.";
+                    btn.disabled = false;
+                    lbl.textContent = "Send Message";
+                }
+            } catch(e) {
+                errBox.classList.remove("hidden");
+                errMsg.textContent = "Network error. Please try again.";
+                btn.disabled = false;
+                lbl.textContent = "Send Message";
+            }
+        });
+    })();
+</script>
+{% endblock %}
