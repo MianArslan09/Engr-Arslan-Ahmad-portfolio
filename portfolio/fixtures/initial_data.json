@@ -1,90 +1,182 @@
 [
-    {
-        "model": "portfolio.project",
-        "pk": 1,
-        "fields": {
-            "title": "ReviewLens",
-            "slug": "reviewlens",
-            "category": "ml",
-            "tagline": "AI-powered sentiment analysis system for e-commerce reviews.",
-            "description": "An end-to-end AI-powered sentiment analysis platform.",
-            "tech_stack": "Python, FastAPI, Flutter, Scikit-Learn",
-            "github_url": "https://github.com/yourusername/reviewlens",
-            "live_url": "",
-            "is_featured": true,
-            "created_at": "2026-05-01T00:00:00Z"
-        }
-    },
-    {
-        "model": "portfolio.project",
-        "pk": 2,
-        "fields": {
-            "title": "DataXAi",
-            "slug": "dataxai",
-            "category": "data",
-            "tagline": "Self-healing ETL pipeline and predictive analytics platform.",
-            "description": "Utilizes a custom Python Fault Injector for system evaluation.",
-            "tech_stack": "Python, venv, Pandas, FastAPI, Python Fault Injector",
-            "github_url": "https://github.com/yourusername/dataxai",
-            "live_url": "",
-            "is_featured": true,
-            "created_at": "2026-06-01T00:00:00Z"
-        }
-    },
-    {
-        "model": "portfolio.experience",
-        "pk": 1,
-        "fields": {
-            "company": "Optimum Tech",
-            "role": "MarTech Intern",
-            "experience_type": "internship",
-            "location": "Faisalabad, Pakistan",
-            "start_date": "2026-01-01",
-            "end_date": "2026-03-31",
-            "is_current": false,
-            "responsibilities": "Contributed to data analytics dashboards.\nAssisted in building Python-based automation workflows.",
-            "tech_used": "Python, Data Analytics",
-            "order": 1
-        }
-    },
-    {
-        "model": "portfolio.experience",
-        "pk": 2,
-        "fields": {
-            "company": "CodeAlpha",
-            "role": "Data Science Intern",
-            "experience_type": "internship",
-            "location": "Remote",
-            "start_date": "2025-07-01",
-            "end_date": "2025-12-31",
-            "is_current": false,
-            "responsibilities": "Built production ML pipelines.\nImplemented predictive modeling techniques.",
-            "tech_used": "Python, Scikit-Learn, Pandas, NumPy",
-            "order": 2
-        }
-    },
-    {
-        "model": "portfolio.certification",
-        "pk": 1,
-        "fields": {
-            "title": "Generative AI Development",
-            "issuer": "ibm",
-            "badge_icon": "🤖",
-            "issue_date": "2026-01-15",
-            "credential_url": "https://www.credly.com",
-            "order": 1
-        }
-    },
-    {
-        "model": "portfolio.certification",
-        "pk": 2,
-        "fields": {
-            "title": "Certified Cyber Ethical Hacking",
-            "issuer": "ec_council",
-            "badge_icon": "🛡️",
-            "issue_date": "2025-10-10",
-            "credential_url": "https://www.credly.com",
-            "order": 2
-        }
+  {
+    "model": "portfolio.experience",
+    "pk": 1,
+    "fields": {
+      "company": "Optimum Tech",
+      "role": "MarTech Intern",
+      "experience_type": "internship",
+      "location": "Faisalabad, Pakistan",
+      "start_date": "2026-01-01",
+      "end_date": "2026-03-31",
+      "is_current": false,
+      "responsibilities": "Handled end-to-end marketing technology solution pipelines\nAutomated data cleaning workflows for campaign datasets\nBuilt analytics automation scripts to extract insights from web campaigns\nGenerated performance dashboards from Google Analytics and Meta Ads data",
+      "tech_used": "Python, Pandas, Google Analytics API, Meta Ads API, Excel",
+      "order": 1
     }
+  },
+  {
+    "model": "portfolio.experience",
+    "pk": 2,
+    "fields": {
+      "company": "CodeAlpha",
+      "role": "Data Science Intern",
+      "experience_type": "internship",
+      "location": "Remote",
+      "start_date": "2025-07-01",
+      "end_date": "2025-12-31",
+      "is_current": false,
+      "responsibilities": "Designed predictive ML models using Scikit-Learn on large-scale datasets\nPerformed feature engineering and hyperparameter tuning to optimize accuracy\nDeveloped classification and regression pipelines on big data repositories\nDocumented model evaluation reports with confusion matrices and ROC curves.",
+      "tech_used": "Python, Scikit-Learn, Pandas, NumPy, Matplotlib, Seaborn, Jupyter",
+      "order": 2
+    }
+  },
+  {
+    "model": "portfolio.experience",
+    "pk": 3,
+    "fields": {
+      "company": "Spark IT Institute",
+      "role": "Junior Data Analyst",
+      "experience_type": "parttime",
+      "location": "Faisalabad, Pakistan",
+      "start_date": "2024-07-01",
+      "end_date": "2024-09-30",
+      "is_current": false,
+      "responsibilities": "Performed Exploratory Data Analysis on complex Kaggle datasets\nIdentified statistical patterns, outliers, and trends to support business decisions\nBuilt interactive web apps using Streamlit for non-technical stakeholders\nCreated visualisations with Matplotlib and Seaborn to communicate data stories",
+      "tech_used": "Python, Pandas, NumPy, Matplotlib, Seaborn, Streamlit, Kaggle",
+      "order": 3
+    }
+  },
+  {
+    "model": "portfolio.certification",
+    "pk": 1,
+    "fields": {
+      "title": "Professional Certificate in Generative Al Development",
+      "issuer": "ibm",
+      "issuer_display": "IBM Coursera",
+      "credential_url": "",
+      "issue_date": "2024-06-01",
+      "description": "LLMS, Generative Systems Architecture, Prompt Engineering, RAG pipelines, fine-tuning transformer models, and responsible Al deployment.",
+      "badge_icon": "",
+      "order": 1
+    }
+  },
+  {
+    "model": "portfolio.certification",
+    "pk": 2,
+    "fields": {
+      "title": "Developing Al Applications with Python and Flask",
+      "issuer": "ibm",
+      "issuer_display": "IBM Coursera",
+      "credential_url": "",
+      "issue_date": "2024-01-01",
+      "description": "Flask decorators, routing, API handling, integrating AI/ML models into production web endpoints, RESTful API design patterns.",
+      "badge_icon": "",
+      "order": 2
+    }
+  },
+  {
+    "model": "portfolio.certification",
+    "pk": 3,
+    "fields": {
+      "title": "Python for Data Science",
+      "issuer": "google",
+      "issuer_display": "Microsoft Coursera",
+      "credential_url": "",
+      "issue_date": "2023-09-01",
+      "description": "OOP, Data Structures and Algorithms, Pandas, NumPy, Matplotlib, and applied data science workflows.",
+      "badge_icon": "",
+      "order": 3
+    }
+  },
+  {
+    "model": "portfolio.certification",
+    "pk": 4,
+    "fields": {
+      "title": "Certified Ethical Hacking (CEH) in Cyber Security",
+      "issuer": "ec_council",
+      "issuer_display": "EC-Council Pakistan",
+      "credential_url": "",
+      "issue_date": "2023-06-01",
+      "description": "Penetration testing methodologies, web application vulnerability analysis, network scanning with Wireshark, OWASP Top 10 exploitation.",
+      "badge_icon": "",
+      "order": 4
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 1,
+    "fields": {
+      "title": "ReviewLens AI Sentiment Analysis",
+      "slug": "reviewlens-sentiment-analysis",
+      "category": "ml",
+      "tagline": "NLP engine for Daraz product reviews using FastAPI, Scikit-Learn and TF-IDF.",
+      "description": "ReviewLens is an end-to-end Al-powered sentiment analysis platform for Daraz. The system ingests raw review text through a TF-IDF extraction pipeline and classifies sentiment via Scikit-Learn. Backend is served with FastAPI and visualised in Flutter.",
+      "tech_stack": "Python, FastAPI, Scikit-Learn, TF-IDF, NLP, Flutter, REST API",
+      "github_url": "https://github.com/arslandev/reviewlens",
+      "live_url": "",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+      "image": "",
+      "is_featured": true,
+      "order": 1,
+      "created_at": "2024-09-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 2,
+    "fields": {
+      "title": "Credit Card Fraud Detection App",
+      "slug": "credit-card-fraud-detection",
+      "category": "ml",
+      "tagline": "ML-powered fraud detection with Streamlit dashboard and Scikit-Learn pipelines.",
+      "description": "ML application identifying fraudulent credit card transactions across 284,807 records. Uses SMOTE oversampling, feature scaling, and Random Forest achieving 99.2% accuracy with a Streamlit analytics interface.",
+      "tech_stack": "Python, Scikit-Learn, Pandas, SMOTE, Random Forest, Streamlit, Matplotlib",
+      "github_url": "https://github.com/arslandev/fraud-detection",
+      "live_url": "",
+      "image_url": "https://images.unsplash.com/photo-1563013544-824aelb704d3?w=800&q=80",
+      "image": "",
+      "is_featured": true,
+      "order": 2,
+      "created_at": "2024-08-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 3,
+    "fields": {
+      "title": "IP-Blocking Automation App",
+      "slug": "ip-blocking-automation",
+      "category": "security",
+      "tagline": "Linux firewall automation suite integrating iptables with real-time logging graphs.",
+      "description": "Web-driven Linux automation providing a GUI for managing iptables firewall rules. Admins can block/unblock IPs and monitor real-time traffic logs through interactive chart dashboards.",
+      "tech_stack": "Python, Flask, iptables, Linux, Subprocess, Chart.js, HTML/CSS",
+      "github_url": "https://github.com/arslandev/ip-blocker",
+      "live_url": "",
+      "image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+      "image": "",
+      "is_featured": true,
+      "order": 3,
+      "created_at": "2024-06-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 4,
+    "fields": {
+      "title": "Advanced E-Learning Platform Database",
+      "slug": "elearning-platform-database",
+      "category": "data",
+      "tagline": "High-performance MySQL relational architecture with Streamlit admin GUI.",
+      "description": "Comprehensive relational database for a scalable e-learning platform with normalized tables for Users, Courses, Enrollments, Quizzes, and Progress tracking. Streamlit GUI enables non-technical admin management.",
+      "tech_stack": "MySQL, Streamlit, Python, SQLAlchemy, ER Modelling, Stored Procedures",
+      "github_url": "https://github.com/arslandev/elearning-db",
+      "live_url": "",
+      "image_url": "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80",
+      "image": "",
+      "is_featured": false,
+      "order": 4,
+      "created_at": "2024-04-01T00:00:00Z"
+    }
+  }
 ]
