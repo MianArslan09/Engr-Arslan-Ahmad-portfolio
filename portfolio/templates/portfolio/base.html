@@ -1,0 +1,271 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{{ owner.name }} | Python ML Developer{% endblock %}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ["Syne", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"],
+                        body: ["Inter", "sans-serif"]
+                    },
+                    animation: {
+                        "float": "float 6s ease-in-out infinite",
+                        "spin-slow": "spin 20s linear infinite"
+                    },
+                    keyframes: {
+                        float: {
+                            "0%, 100%": { transform: "translateY(0)" },
+                            "50%": { transform: "translateY(-12px)" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --clr-bg: #080B14;
+            --clr-surface: #0D1220;
+            --clr-cyan: #22D3EE;
+            --clr-violet: #A78BFA;
+            --clr-text: #E2E8F0;
+            --clr-muted: #94A3B8;
+        }
+        html { background: var(--clr-bg); }
+        
+        /* Custom scrollbar */
+        *::-webkit-scrollbar { width: 6px; }
+        *::-webkit-scrollbar-track { background: var(--clr-bg); }
+        *::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--clr-cyan), var(--clr-violet)); border-radius: 3px; }
+        
+        /* Hide default cursor everywhere */
+        body, * { cursor: none !important; }
+        
+        /* Custom cursor elements */
+        #cursor-dot, #cursor-ring {
+            position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%);
+        }
+        #cursor-dot {
+            width: 8px; height: 8px; background: var(--clr-cyan);
+            box-shadow: 0 0 12px var(--clr-cyan), 0 0 24px var(--clr-cyan);
+            border-radius: 50%;
+        }
+        #cursor-ring {
+            width: 36px; height: 36px; border: 1.5px solid rgba(34, 211, 238, 0.5); border-radius: 50%;
+            transition: width 0.2s, height 0.2s, border-color 0.2s;
+        }
+        
+        /* Ring expands on hover */
+        body:has(a:hover) #cursor-ring, body:has(button:hover) #cursor-ring {
+            width: 52px; height: 52px; border-color: var(--clr-violet);
+        }
+        
+        /* Three.js canvas fixed behind everything */
+        #bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
+        
+        /* Glass card effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px) saturate(1.4); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        .glass-hover { transition: background 0.3s, border-color 0.3s; }
+        .glass-hover:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(34, 211, 238, 0.2); }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--clr-cyan), var(--clr-violet));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Shimmer animated text */
+        @keyframes textShimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        .shimmer-text {
+            background: linear-gradient(90deg, var(--clr-cyan) 0%, #fff 30%, var(--clr-violet) 60%, var(--clr-cyan) 100%);
+            background-size: 200% auto; -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent; animation: textShimmer 4s linear infinite;
+        }
+        
+        /* Neon gradient border using CSS mask */
+        .neon-border { position: relative; }
+        .neon-border::before {
+            content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+            background: linear-gradient(135deg, var(--clr-cyan), transparent, var(--clr-violet));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+        }
+        
+        /* Scroll reveal animation */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s, transform 0.7s; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Skill progress bar */
+        .skill-bar { height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
+        .skill-fill {
+            height: 100%; border-radius: 2px;
+            background: linear-gradient(90deg, var(--clr-cyan), var(--clr-violet));
+            width: 0; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+        }
+        
+        /* Technology pill badge */
+        .tech-pill {
+            display: inline-flex; align-items: center; padding: 2px 10px; border-radius: 999px;
+            font-size: 0.7rem; font-family: "JetBrains Mono", monospace;
+            background: rgba(34, 211, 238, 0.08); border: 1px solid rgba(34, 211, 238, 0.2); color: var(--clr-cyan);
+        }
+        
+        /* Section monospace label */
+        .section-label {
+            font-family: "JetBrains Mono", monospace; font-size: 0.7rem;
+            letter-spacing: 0.2em; color: var(--clr-cyan); text-transform: uppercase;
+        }
+        
+        /* Timeline vertical connector */
+        .timeline-item:not(:last-child)::after {
+            content: ""; position: absolute; left: 19px; top: 44px; width: 2px; bottom: -20px;
+            background: linear-gradient(180deg, rgba(34, 211, 238, 0.4), transparent);
+        }
+        
+        /* Swiper custom styling */
+        .swiper-pagination-bullet { background: var(--clr-muted) !important; opacity: 0.5; }
+        .swiper-pagination-bullet-active { background: var(--clr-cyan) !important; opacity: 1 !important; width: 24px !important; border-radius: 4px; }
+        .swiper-button-next, .swiper-button-prev { color: var(--clr-cyan) !important; }
+        .swiper-button-next::after, .swiper-button-prev::after { font-size: 1.1rem !important; }
+        
+        /* Typewriter cursor blink */
+        .typed-cursor { color: var(--clr-cyan); animation: blink 1s step-end infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-[#080B14] text-slate-200 font-body antialiased overflow-x-hidden">
+
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+    
+    <canvas id="bg-canvas"></canvas>
+
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#hero" class="font-display font-extrabold text-lg">
+                <span class="gradient-text">Arslan</span><span class="text-white">.dev</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                {% for label, anchor in nav_links %}
+                <a href="#{{ anchor }}" data-section="{{ anchor }}" class="nav-link text-sm font-mono text-slate-400 hover:text-cyan-400 transition-colors duration-200">
+                    {{ label }}
+                </a>
+                {% endfor %}
+            </div>
+            <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-display font-semibold glass border border-cyan-400/30 text-cyan-400 hover:border-cyan-400/60 transition-all duration-300 neon-border">
+                <i class="fas fa-paper-plane text-xs"></i> Hire Me
+            </a>
+            <button id="mob-menu-btn" class="md:hidden text-slate-400 hover:text-cyan-400">
+                <i class="fas fa-bars text-lg"></i>
+            </button>
+        </div>
+        
+        <div id="mob-menu" class="hidden md:hidden glass border-t border-white/5 px-6 py-4">
+            {% for label, anchor in nav_links %}
+            <a href="#{{ anchor }}" class="block py-2.5 text-sm text-slate-400 hover:text-cyan-400 mob-link">
+                {{ label }}
+            </a>
+            {% endfor %}
+        </div>
+    </nav>
+
+    <div class="relative z-10">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="relative z-10 border-t border-white/5 py-10 mt-24">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="font-mono text-xs text-slate-500">
+                © 2026 <span class="text-cyan-400">{{ owner.name }}</span> Built with Django & Three.js
+            </p>
+            <div class="flex items-center gap-6">
+                <a href="{{ owner.github }}" target="_blank" class="text-slate-500 hover:text-cyan-400 transition-colors"><i class="fab fa-github text-lg"></i></a>
+                <a href="{{ owner.linkedin }}" target="_blank" class="text-slate-500 hover:text-cyan-400 transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
+                <a href="mailto:{{ owner.email }}" class="text-slate-500 hover:text-cyan-400 transition-colors"><i class="fas fa-envelope text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Custom Cursor Logic
+        const dot = document.getElementById("cursor-dot"), ring = document.getElementById("cursor-ring");
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener("mousemove", e => {
+            mx = e.clientX; my = e.clientY;
+            dot.style.left = mx + "px"; dot.style.top = my + "px";
+        });
+        (function animRing() {
+            rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+            ring.style.left = rx + "px"; ring.style.top = ry + "px";
+            requestAnimationFrame(animRing);
+        })();
+
+        // Navbar Glass Effect on Scroll
+        const nb = document.getElementById("navbar");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 60) {
+                nb.classList.add("glass"); nb.style.borderBottom = "1px solid rgba(255,255,255,0.06)";
+            } else {
+                nb.classList.remove("glass"); nb.style.borderBottom = "";
+            }
+        });
+
+        // Scroll Reveal Animation
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add("visible");
+                    revealObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+        // Skill Bar Animation
+        const skillObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll(".skill-fill").forEach(f => f.style.width = f.dataset.pct + "%");
+                    skillObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        const skillsSection = document.querySelector(".skills-section");
+        if (skillsSection) skillObserver.observe(skillsSection);
+
+        // Mobile Menu Logic
+        const mb = document.getElementById("mob-menu-btn"), mm = document.getElementById("mob-menu");
+        mb?.addEventListener("click", () => mm.classList.toggle("hidden"));
+        document.querySelectorAll(".mob-link").forEach(l => l.addEventListener("click", () => mm.classList.add("hidden")));
+    </script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
