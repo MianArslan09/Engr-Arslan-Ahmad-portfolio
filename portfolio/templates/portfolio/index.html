@@ -124,3 +124,96 @@
 </div></section>
 
 
+
+
+<!-- 3 project section -->
+ <section id="projects" class="relative py-28 px-6"><div class="max-w-7xl mx-auto">
+    <div class="section-label mb-3 reveal">// projects</div>
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <h2 class="font-display font-extrabold text-4xl md:text-5xl text-white reveal">Featured <span class="gradient-text">Projects</span></h2>
+        
+        <div class="flex flex-wrap gap-2 reveal" id="project-filters">
+            <button class="filter-btn font-mono text-xs px-4 py-2 rounded-xl glass border border-cyan-400/40 text-cyan-400 transition-all" data-filter="all">All</button>
+            {% for cat, data in project_categories.items %}
+            <button class="filter-btn font-mono text-xs px-4 py-2 rounded-xl glass border border-white/10 text-slate-400 hover:border-cyan-400/30 hover:text-cyan-400 transition-all" data-filter="{{ cat }}">{{ data.label }} ({{ data.count }})</button>
+            {% endfor %}
+        </div>
+    </div>
+    
+    {% if featured_projects %}
+    <div class="swiper projects-swiper mb-16 reveal">
+        <div class="swiper-wrapper pb-12">
+            {% for project in featured_projects %}
+            <div class="swiper-slide">
+                <div class="project-card glass rounded-2xl overflow-hidden glass-hover neon-border h-full" data-category="{{ project.category }}">
+                    <div class="relative h-52 overflow-hidden">
+                        {% if project.get_image %}
+                        <img src="{{ project.get_image }}" alt="{{ project.title }}" class="w-full h-full object-cover loading=lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                        {% endif %}
+                        <div class="w-full h-full {% if not project.get_image %}flex{% else %}hidden{% endif %} items-center justify-center bg-gradient-to-br from-cyan-900/30 to-violet-900/30">
+                            <i class="fas fa-code text-4xl text-cyan-400/40"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#080B14] via-transparent to-transparent"></div>
+                        <span class="absolute top-3 left-3 tech-pill">{{ project.get_category_display }}</span>
+                        {% if project.is_featured %}
+                        <span class="absolute top-3 right-3 font-mono text-xs px-2 py-1 rounded-lg bg-amber-400/10 border border-amber-400/30 text-amber-400">Featured</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-display font-bold text-white text-xl mb-2">{{ project.title }}</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">{{ project.tagline }}</p>
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            {% for tech in project.get_tech_list %}
+                            <span class="tech-pill">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" target="_blank" class="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
+                            {% endif %}
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" target="_blank" class="text-xs text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1"><i class="fas fa-external-link-alt text-xs"></i> Demo</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div><div class="swiper-button-next"></div>
+    </div>
+    {% endif %}
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+        {% for project in all_projects %}
+        <div class="project-card glass rounded-2xl overflow-hidden glass-hover reveal" data-category="{{ project.category }}">
+            <div class="p-6">
+                <div class="flex items-start justify-between mb-3">
+                    <span class="font-mono text-xs text-cyan-400">{{ project.get_category_display }}</span>
+                    {% if project.is_featured %}<i class="fas fa-star text-amber-400 text-xs"></i>{% endif %}
+                </div>
+                <h3 class="font-display font-bold text-white text-base mb-2">{{ project.title }}</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-4">{{ project.tagline }}</p>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                    {% for tech in project.get_tech_list|slice:":4" %}
+                    <span class="tech-pill">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                <div class="flex gap-3 pt-3 border-t border-white/5">
+                    {% if project.github_url %}
+                    <a href="{{ project.github_url }}" target="_blank" class="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1"><i class="fab fa-github"></i> GitHub</a>
+                    {% endif %}
+                    {% if project.live_url %}
+                    <a href="{{ project.live_url }}" target="_blank" class="text-xs text-cyan-400 hover:text-cyan-300 transition-colors">Demo</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div></section>
+
