@@ -67,3 +67,60 @@
         
     </div>
 </section>
+
+
+
+<!-- 2 about and skill section -->
+
+<section id="about" class="relative py-28 px-6"><div class="max-w-6xl mx-auto">
+    <div class="section-label mb-3 reveal">// about me</div>
+    <h2 class="font-display font-extrabold text-4xl md:text-5xl text-white mb-16 reveal">Crafting <span class="gradient-text">Intelligent Systems</span></h2>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div class="reveal">
+            <p class="text-slate-400 leading-relaxed text-base mb-6">{{ owner.about }}</p>
+            <p class="text-slate-400 leading-relaxed text-base mb-8">
+                Currently pursuing <strong class="text-white">B.S. Software Engineering</strong> at
+                <strong class="text-cyan-400">{{ owner.education.institution }}</strong>,
+                I have built production ML pipelines, data analytics dashboards, and cybersecurity automation tools.
+            </p>
+            
+            <div class="grid grid-cols-2 gap-3">
+                {% for fact in about_facts %}
+                <div class="glass rounded-xl p-3 glass-hover">
+                    <div class="font-mono text-xs text-slate-500 mb-1">{{ fact.label }}</div>
+                    <div class="text-sm text-white font-medium">{{ fact.value }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="reveal skills-section">
+            <div class="glass rounded-2xl p-6 neon-border">
+                <h3 class="font-display font-bold text-white mb-6 text-lg">Technical Stack</h3>
+                <div class="space-y-4">
+                    {% for skill in skills %}
+                    <div>
+                        <div class="flex justify-between mb-1.5">
+                            <span class="font-mono text-xs text-slate-400">{{ skill.name }}</span>
+                            <span class="font-mono text-xs text-cyan-400">{{ skill.pct }}%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-pct="{{ skill.pct }}"></div></div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="mt-6 pt-5 border-t border-white/5">
+                    <div class="font-mono text-xs text-slate-500 mb-3">Also worked with</div>
+                    <div class="flex flex-wrap gap-2">
+                        {% for tool in extra_tools %}
+                        <span class="tech-pill">{{ tool }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></section>
+
+
