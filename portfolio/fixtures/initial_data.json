@@ -1,0 +1,90 @@
+[
+    {
+        "model": "portfolio.project",
+        "pk": 1,
+        "fields": {
+            "title": "ReviewLens",
+            "slug": "reviewlens",
+            "category": "ml",
+            "tagline": "AI-powered sentiment analysis system for e-commerce reviews.",
+            "description": "An end-to-end AI-powered sentiment analysis platform.",
+            "tech_stack": "Python, FastAPI, Flutter, Scikit-Learn",
+            "github_url": "https://github.com/yourusername/reviewlens",
+            "live_url": "",
+            "is_featured": true,
+            "created_at": "2026-05-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "portfolio.project",
+        "pk": 2,
+        "fields": {
+            "title": "DataXAi",
+            "slug": "dataxai",
+            "category": "data",
+            "tagline": "Self-healing ETL pipeline and predictive analytics platform.",
+            "description": "Utilizes a custom Python Fault Injector for system evaluation.",
+            "tech_stack": "Python, venv, Pandas, FastAPI, Python Fault Injector",
+            "github_url": "https://github.com/yourusername/dataxai",
+            "live_url": "",
+            "is_featured": true,
+            "created_at": "2026-06-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "portfolio.experience",
+        "pk": 1,
+        "fields": {
+            "company": "Optimum Tech",
+            "role": "MarTech Intern",
+            "experience_type": "internship",
+            "location": "Faisalabad, Pakistan",
+            "start_date": "2026-01-01",
+            "end_date": "2026-03-31",
+            "is_current": false,
+            "responsibilities": "Contributed to data analytics dashboards.\nAssisted in building Python-based automation workflows.",
+            "tech_used": "Python, Data Analytics",
+            "order": 1
+        }
+    },
+    {
+        "model": "portfolio.experience",
+        "pk": 2,
+        "fields": {
+            "company": "CodeAlpha",
+            "role": "Data Science Intern",
+            "experience_type": "internship",
+            "location": "Remote",
+            "start_date": "2025-07-01",
+            "end_date": "2025-12-31",
+            "is_current": false,
+            "responsibilities": "Built production ML pipelines.\nImplemented predictive modeling techniques.",
+            "tech_used": "Python, Scikit-Learn, Pandas, NumPy",
+            "order": 2
+        }
+    },
+    {
+        "model": "portfolio.certification",
+        "pk": 1,
+        "fields": {
+            "title": "Generative AI Development",
+            "issuer": "ibm",
+            "badge_icon": "🤖",
+            "issue_date": "2026-01-15",
+            "credential_url": "https://www.credly.com",
+            "order": 1
+        }
+    },
+    {
+        "model": "portfolio.certification",
+        "pk": 2,
+        "fields": {
+            "title": "Certified Cyber Ethical Hacking",
+            "issuer": "ec_council",
+            "badge_icon": "🛡️",
+            "issue_date": "2025-10-10",
+            "credential_url": "https://www.credly.com",
+            "order": 2
+        }
+    }
+]
