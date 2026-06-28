@@ -217,3 +217,99 @@
     </div>
 </div></section>
 
+
+<!-- 4 experience and timeline section -->
+ <section id="experience" class="relative py-28 px-6"><div class="max-w-4xl mx-auto">
+    <div class="section-label mb-3 reveal">// experience</div>
+    <h2 class="font-display font-extrabold text-4xl md:text-5xl text-white mb-16 reveal">Work <span class="gradient-text">History</span></h2>
+    
+    <div class="relative space-y-6">
+        {% for exp in experiences %}
+        <div class="timeline-item relative pl-14 reveal">
+            <div class="absolute left-0 top-0 w-10 h-10 rounded-full glass border border-cyan-400/30 flex items-center justify-center z-10">
+                <div class="w-2.5 h-2.5 rounded-full bg-cyan-400"></div>
+            </div>
+            
+            <div class="glass rounded-2xl p-6 glass-hover neon-border">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
+                    <div>
+                        <h3 class="font-display font-bold text-white text-xl">{{ exp.role }}</h3>
+                        <div class="font-mono text-sm text-cyan-400 mt-0.5">{{ exp.company }}</div>
+                    </div>
+                    <div class="flex flex-col items-start sm:items-end gap-1.5">
+                        <span class="font-mono text-xs text-slate-500"><i class="fas fa-calendar-alt mr-1.5"></i>{{ exp.get_date_range }}</span>
+                        <span class="font-mono text-xs text-slate-500"><i class="fas fa-map-marker-alt mr-1.5"></i>{{ exp.location }}</span>
+                        <span class="tech-pill capitalize">{{ exp.get_experience_type_display }}</span>
+                    </div>
+                </div>
+                
+                <ul class="space-y-1.5 mb-4">
+                    {% for h in exp.get_responsibilities_list %}
+                    <li class="flex items-start gap-2.5 text-sm text-slate-400"><span class="text-cyan-400 mt-0.5 shrink-0">►</span>{{ h }}</li>
+                    {% endfor %}
+                </ul>
+                
+                {% if exp.get_tech_list %}
+                <div class="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
+                    {% for tech in exp.get_tech_list %}
+                    <span class="tech-pill">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div></section>
+
+<section id="education" class="relative py-28 px-6"><div class="max-w-5xl mx-auto">
+    <div class="section-label mb-3 reveal">// education</div>
+    <h2 class="font-display font-extrabold text-4xl md:text-5xl text-white mb-16 reveal">Academic <span class="gradient-text">Background</span></h2>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="glass rounded-2xl p-8 neon-border reveal skills-section">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-2xl">🎓</div>
+                <div>
+                    <div class="font-mono text-xs text-cyan-400 mb-0.5">Current Degree</div>
+                    <div class="font-display font-bold text-white">{{ owner.education.degree }}</div>
+                </div>
+            </div>
+            
+            <div class="space-y-3 mb-6">
+                <div class="flex justify-between text-sm"><span class="text-slate-500">Institution</span><span class="text-white text-right max-w-[60%]">{{ owner.education.institution }}</span></div>
+                <div class="flex justify-between text-sm"><span class="text-slate-500">Semester</span><span class="text-white">{{ owner.education.semester }}</span></div>
+                <div class="flex justify-between text-sm"><span class="text-slate-500">Current GPA</span><span class="text-cyan-400 font-mono font-semibold">{{ owner.education.current_gpa }}</span></div>
+                <div class="flex justify-between text-sm"><span class="text-slate-500">Cumulative CGPA</span><span class="text-violet-400 font-mono font-semibold">{{ owner.education.cgpa }}</span></div>
+            </div>
+            
+            <div class="skill-bar"><div class="skill-fill" data-pct="95"></div></div>
+            <p class="font-mono text-xs text-slate-600 mt-1">GPA Progress: 3.8/4.0</p>
+        </div>
+        
+        <div class="space-y-4 reveal">
+            <div class="glass rounded-2xl p-6 glass-hover">
+                <div class="font-display font-bold text-white mb-4">🎙 Extracurricular</div>
+                {% for a in owner.extracurricular %}
+                <div class="flex items-center gap-3 text-sm text-slate-400"><span class="text-cyan-400">►</span>{{ a }}</div>
+                {% endfor %}
+            </div>
+            
+            <div class="glass rounded-2xl p-6 glass-hover">
+                <div class="font-display font-bold text-white mb-4">🌐 Based In</div>
+                <p class="text-slate-400 text-sm">{{ owner.location }}</p>
+                <p class="text-slate-500 text-xs font-mono mt-1">UTC+5 (Pakistan Standard Time)</p>
+            </div>
+            
+            <div class="glass rounded-2xl p-6 glass-hover">
+                <div class="font-display font-bold text-white mb-4">🚀 Open To</div>
+                <div class="space-y-2 text-sm text-slate-400">
+                    <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>ML / Data Science Roles</div>
+                    <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>Python Backend Development</div>
+                    <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Remote & Hybrid Positions</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></section>
+
