@@ -54,7 +54,7 @@
       "title": "Professional Certificate in Generative Al Development",
       "issuer": "ibm",
       "issuer_display": "IBM Coursera",
-      "credential_url": "",
+      "credential_url": "https://coursera.org/share/75732605cc42f9d2ba53ee934f9b90af",
       "issue_date": "2024-06-01",
       "description": "LLMS, Generative Systems Architecture, Prompt Engineering, RAG pipelines, fine-tuning transformer models, and responsible Al deployment.",
       "badge_icon": "",
@@ -68,7 +68,7 @@
       "title": "Developing Al Applications with Python and Flask",
       "issuer": "ibm",
       "issuer_display": "IBM Coursera",
-      "credential_url": "",
+      "credential_url": "https://coursera.org/share/ca3c2aaa7af16b9e108f20523b829f2f",
       "issue_date": "2024-01-01",
       "description": "Flask decorators, routing, API handling, integrating AI/ML models into production web endpoints, RESTful API design patterns.",
       "badge_icon": "",
@@ -80,9 +80,9 @@
     "pk": 3,
     "fields": {
       "title": "Python for Data Science",
-      "issuer": "google",
-      "issuer_display": "Microsoft Coursera",
-      "credential_url": "",
+      "issuer": "IBM",
+      "issuer_display": "IBM Coursera",
+      "credential_url": "https://coursera.org/share/75732605cc42f9d2ba53ee934f9b90af",
       "issue_date": "2023-09-01",
       "description": "OOP, Data Structures and Algorithms, Pandas, NumPy, Matplotlib, and applied data science workflows.",
       "badge_icon": "",
@@ -101,6 +101,20 @@
       "description": "Penetration testing methodologies, web application vulnerability analysis, network scanning with Wireshark, OWASP Top 10 exploitation.",
       "badge_icon": "",
       "order": 4
+    }
+  },
+  {
+    "model": "portfolio.certification",
+    "pk": 5,
+    "fields": {
+      "title": "Introduction to Core Networking and TCP/IP Protocols",
+      "issuer": "NVIDIA",
+      "issuer_display": "NVIDIA Deep Learning Institute",
+      "credential_url": "https://coursera.org/share/ca3c2aaa7af16b9e108f20523b829f2f",
+      "issue_date": "2024-01-01",
+      "description": "Mastered fundamental networking principles, architectural models (OSI and TCP/IP), and Ethernet technologies. Gained practical knowledge of network infrastructure design, data encapsulation, and Layer 2 switching and forwarding mechanisms.",
+      "badge_icon": "",
+      "order": 5
     }
   },
   {
