@@ -132,7 +132,7 @@
       "tagline": "ML-powered fraud detection with Streamlit dashboard and Scikit-Learn pipelines.",
       "description": "ML application identifying fraudulent credit card transactions across 284,807 records. Uses SMOTE oversampling, feature scaling, and Random Forest achieving 99.2% accuracy with a Streamlit analytics interface.",
       "tech_stack": "Python, Scikit-Learn, Pandas, SMOTE, Random Forest, Streamlit, Matplotlib",
-      "github_url": "https://github.com/arslandev/fraud-detection",
+      "github_url": "https://github.com/MianArslan09/Fraud-Detection-ML.git",
       "live_url": "",
       "image_url": "https://images.unsplash.com/photo-1563013544-824aelb704d3?w=800&q=80",
       "image": "",
