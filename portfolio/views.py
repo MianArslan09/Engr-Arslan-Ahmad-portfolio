@@ -44,7 +44,7 @@ EXTRA_TOOLS = [
 
 OWNER = {
     "name": "Muhammad Arslan Ahmad",
-    "title": "Python ML Developer & Data Science Enthusiast",
+    "title": "Python ML Developer & Data Science ETL → ML → LLMs-GenAI ",
     "location": "Faisalabad, Pakistan",
     "email": "developer.arslanahmad@gmail.com", # <--- UPDATE THIS
     "github": "https://github.com/MianArslan09", 
