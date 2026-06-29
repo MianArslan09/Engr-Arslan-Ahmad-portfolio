@@ -151,7 +151,7 @@
       "tagline": "Linux firewall automation suite integrating iptables with real-time logging graphs.",
       "description": "Web-driven Linux automation providing a GUI for managing iptables firewall rules. Admins can block/unblock IPs and monitor real-time traffic logs through interactive chart dashboards.",
       "tech_stack": "Python, Flask, iptables, Linux, Subprocess, Chart.js, HTML/CSS",
-      "github_url": "https://github.com/arslandev/ip-blocker",
+      "github_url": "https://github.com/MianArslan09/IP-blocking-via-IPTables.git",
       "live_url": "",
       "image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
       "image": "",
