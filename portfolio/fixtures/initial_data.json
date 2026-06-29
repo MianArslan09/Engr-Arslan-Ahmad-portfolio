@@ -113,7 +113,7 @@
       "tagline": "NLP engine for Daraz product reviews using FastAPI, Scikit-Learn and TF-IDF.",
       "description": "ReviewLens is an end-to-end Al-powered sentiment analysis platform for Daraz. The system ingests raw review text through a TF-IDF extraction pipeline and classifies sentiment via Scikit-Learn. Backend is served with FastAPI and visualised in Flutter.",
       "tech_stack": "Python, FastAPI, Scikit-Learn, TF-IDF, NLP, Flutter, REST API",
-      "github_url": "https://github.com/arslandev/reviewlens",
+      "github_url": "https://github.com/MianArslan09/ReviewLens.git",
       "live_url": "",
       "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
       "image": "",
