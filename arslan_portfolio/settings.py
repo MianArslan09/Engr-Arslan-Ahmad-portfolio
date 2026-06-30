@@ -7,9 +7,18 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-me")
-DEBUG = os.getenv("DEBUG", "True") == "True"
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
+# Allow the Render URL + localhost for local development
+ALLOWED_HOSTS = ['arslanahmad-portfolio.onrender.com', 'localhost', '127.0.0.1']
+
+# If you have any specific Render domain, add it here
+# You can also use os.environ.get if you want to be extra fancy
+ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
+if ALLOWED_HOSTS_ENV:
+    ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
+
+    
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
