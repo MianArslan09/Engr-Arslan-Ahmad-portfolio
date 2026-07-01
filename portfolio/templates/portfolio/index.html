@@ -165,8 +165,7 @@
                 <div class="project-card glass rounded-2xl overflow-hidden glass-hover neon-border h-full" data-category="{{ project.category }}">
                     <div class="relative h-52 overflow-hidden">
                         {% if project.get_image %}
-                        <img src="{{ project.get_image }}" alt="{{ project.title }}" class="w-full h-full object-cover loading=lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
-                        {% endif %}
+                         <img src="{% static project.image.name %}" alt="{{ project.title }}" class="w-full h-full object-cover loading=lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>                        {% endif %}
                         <div class="w-full h-full {% if not project.get_image %}flex{% else %}hidden{% endif %} items-center justify-center bg-gradient-to-br from-cyan-900/30 to-violet-900/30">
                             <i class="fas fa-code text-4xl text-cyan-400/40"></i>
                         </div>
