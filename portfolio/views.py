@@ -87,7 +87,7 @@ class HomeView(TemplateView):
         ctx["contact_info"] = [
             {"label": "Email", "value": OWNER["email"], "href": f"mailto:{OWNER['email']}", "icon": "fas fa-envelope"},
             {"label": "GitHub", "value": "github.com/MianArslan09", "href": OWNER["github"], "icon": "fab fa-github"},
-            {"label": "LinkedIn", "value": "linkedin.com/in/YOUR_ID", "href": OWNER["linkedin"], "icon": "fab fa-linkedin"},
+            {"label": "LinkedIn", "value": "linkedin.com/in/-arslan-ahmad", "href": OWNER["linkedin"], "icon": "fab fa-linkedin"},
             {"label": "Location", "value": OWNER["location"], "href": "https://maps.google.com/?q=Faisalabad,+Pakistan", "icon": "fas fa-map-marker-alt"},
         ]
         ctx["contact_form"] = ContactForm()
