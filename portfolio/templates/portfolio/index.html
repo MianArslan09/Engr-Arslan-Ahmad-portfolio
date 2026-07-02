@@ -23,10 +23,15 @@
 
         <div class="flex-1 text-center flex flex-col items-center">
             
-            <div class="mb-8 flex justify-center reveal">
+            <!-- <div class="mb-8 flex justify-center reveal">
                 <div class="w-40 h-40 md:w-52 md:h-52 rounded-full p-1.5 glass border border-cyan-400/40 shadow-[0_0_40px_rgba(34,211,238,0.25)] transition-transform duration-500 hover:scale-105">
                    <img src="{% static 'portfolio/images/me.jpeg' %}" alt="Arslan Ahmad" class="w-full h-full object-cover rounded-full">                </div>
-            </div>
+            </div> -->
+            <div class="mb-8 flex justify-center reveal">
+    <div class="w-40 h-40 md:w-52 md:h-52 rounded-full p-1.5 glass border border-cyan-400/40 shadow-[0_0_40px_rgba(34,211,238,0.25)] transition-transform duration-500 hover:scale-105">
+        <img src="{% static 'portfolio/images/me.jpeg' %}" alt="Arslan Ahmad" class="w-full h-full object-cover object-[center_3%] rounded-full">
+             </div>
+         </div>
             
             <h1 class="font-display font-extrabold text-5xl md:text-6xl lg:text-4xl leading-none mb-6 reveal">
                 <span class="block text-white">Muhammad</span>
@@ -89,8 +94,8 @@
     <h2 class="font-display font-extrabold text-4xl md:text-5xl text-white mb-8 reveal">Crafting <span class="gradient-text">Intelligent Systems</span></h2>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <div class="reveal">
-            <p class="text-slate-400 leading-relaxed text-base mb-6">{{ owner.about }}</p>
-            <p class="text-slate-400 leading-relaxed text-base mb-8">
+            <p class="text-slate-400 leading-relaxed text-white mb-6">{{ owner.about }}</p>
+            <p class="text-slate-400 leading-relaxed text-white mb-8">
                 Currently pursuing <strong class="text-white">B.S. Software Engineering</strong> at
                 <strong class="text-cyan-400">{{ owner.education.institution }}</strong>,
             I build software that transforms complex data into intelligent products.
